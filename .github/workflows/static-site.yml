@@ -39,11 +39,6 @@ jobs:
       - name: Locate built export
         id: locate
         run: |
-          echo '--- listing repo root ---'
-          ls -la
-          echo '--- looking for __sapper__/export ---'
-          find . -name 'index.html' -path '*__sapper__/export*' 2>/dev/null | head -5 || true
-          # Try common Upptime output paths in order
           for candidate in \
             "site/status-page/__sapper__/export" \
             "status-page/__sapper__/export" \
@@ -54,6 +49,15 @@ jobs:
               echo "path=$candidate" >> "$GITHUB_OUTPUT"
               break
             fi
+          done
+      - name: Inject Neuroon custom CSS into all HTML files
+        run: |
+          set -e
+          EXPORT_DIR="${{ steps.locate.outputs.path }}"
+          INJECT='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500\&display=swap" rel="stylesheet"><link href="https://docs.neuroon.ai/css/status-custom.css" rel="stylesheet">'
+          find "$EXPORT_DIR" -name '*.html' -print0 | while IFS= read -r -d '' f; do
+            sed -i 's#</head>#'"$INJECT"'</head>#' "$f"
+            echo "  ✓ Injected into: $f"
           done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
