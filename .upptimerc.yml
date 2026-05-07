@@ -51,6 +51,215 @@ status-website:
   logoUrl: https://docs.neuroon.ai/img/brand/logo-mark.svg
   faviconUrl: https://docs.neuroon.ai/img/brand/favicon.ico
   theme: dark
+  themeColor: "#0a0a0f"
+  customHeadHTML: |
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --nrn-bg: #0a0a0f;
+        --nrn-surface: #12121a;
+        --nrn-surface-elevated: #1a1a26;
+        --nrn-border: #20202e;
+        --nrn-border-strong: #2a2a3d;
+        --nrn-text: #f0f0f5;
+        --nrn-text-secondary: #c8c8d3;
+        --nrn-text-muted: #7c7c92;
+        --nrn-accent: #06b6d4;
+        --nrn-accent-strong: #0891b2;
+        --nrn-up: #10b981;
+        --nrn-up-glow: rgba(16, 185, 129, 0.18);
+        --nrn-down: #ef4444;
+        --nrn-degraded: #f59e0b;
+        --nrn-radius: 12px;
+        --nrn-radius-lg: 14px;
+      }
+
+      html, body {
+        background: var(--nrn-bg) !important;
+        color: var(--nrn-text) !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+        font-feature-settings: 'ss01', 'cv11';
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.55;
+      }
+
+      code, kbd, pre, samp {
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+        font-size: 0.875em !important;
+      }
+
+      /* Navbar */
+      nav {
+        background: rgba(10, 10, 15, 0.72) !important;
+        backdrop-filter: saturate(180%) blur(14px);
+        -webkit-backdrop-filter: saturate(180%) blur(14px);
+        border-bottom: 1px solid var(--nrn-border) !important;
+        padding: 14px 0 !important;
+      }
+      nav .container { padding: 0 24px !important; }
+      nav .logo { gap: 12px !important; font-weight: 600 !important; }
+      nav .logo img { width: 26px !important; height: 26px !important; }
+      nav ul { gap: 26px !important; }
+      nav ul a {
+        color: var(--nrn-text-muted) !important;
+        font-size: 0.92rem !important;
+        font-weight: 500 !important;
+        transition: color 150ms ease !important;
+      }
+      nav ul a:hover { color: var(--nrn-text) !important; }
+      nav ul a[aria-current="page"] {
+        color: var(--nrn-accent) !important;
+        position: relative;
+      }
+
+      /* Main container */
+      main.container { max-width: 980px !important; padding: 56px 24px !important; }
+
+      /* Hero header */
+      header h1 {
+        font-size: 2.25rem !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.025em !important;
+        line-height: 1.15 !important;
+        margin: 0 0 12px 0 !important;
+        color: var(--nrn-text) !important;
+      }
+      header .lead, header p {
+        color: var(--nrn-text-muted) !important;
+        font-size: 1.0625rem !important;
+        line-height: 1.55 !important;
+        max-width: 640px !important;
+        margin: 0 0 32px 0 !important;
+      }
+
+      /* All systems operational banner */
+      main > section:first-of-type {
+        background: linear-gradient(135deg, rgba(16,185,129,0.10) 0%, rgba(16,185,129,0.04) 100%) !important;
+        border: 1px solid rgba(16, 185, 129, 0.25) !important;
+        border-radius: var(--nrn-radius-lg) !important;
+        padding: 20px 24px !important;
+        margin: 0 0 40px 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        font-weight: 600 !important;
+        font-size: 1.0625rem !important;
+      }
+
+      /* Live Status section title */
+      h2 {
+        font-size: 1.0625rem !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.005em !important;
+        color: var(--nrn-text) !important;
+        margin: 0 !important;
+      }
+
+      /* Time range selector (24h/7d/30d/1y/all) */
+      form.f.r {
+        display: inline-flex !important;
+        gap: 4px !important;
+        padding: 4px !important;
+        background: var(--nrn-surface) !important;
+        border: 1px solid var(--nrn-border) !important;
+        border-radius: 999px !important;
+      }
+      form.f.r > div {
+        position: relative !important;
+      }
+      form.f.r input[type="radio"] { display: none !important; }
+      form.f.r label {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 6px 14px !important;
+        border-radius: 999px !important;
+        font-size: 0.82rem !important;
+        font-weight: 500 !important;
+        color: var(--nrn-text-muted) !important;
+        cursor: pointer !important;
+        transition: color 150ms ease, background 150ms ease !important;
+      }
+      form.f.r label:hover { color: var(--nrn-text) !important; }
+      form.f.r input:checked + label {
+        background: var(--nrn-accent) !important;
+        color: #001014 !important;
+        font-weight: 600 !important;
+      }
+
+      /* Component cards (Live Status grid items) */
+      .live-status > div, .live-status > article {
+        background: var(--nrn-surface) !important;
+        border: 1px solid var(--nrn-border) !important;
+        border-radius: var(--nrn-radius-lg) !important;
+        padding: 20px 24px !important;
+        margin: 0 0 12px 0 !important;
+        position: relative !important;
+        overflow: hidden !important;
+        transition: border-color 200ms ease, transform 200ms ease !important;
+      }
+      .live-status > div:hover, .live-status > article:hover {
+        border-color: var(--nrn-border-strong) !important;
+      }
+
+      /* Status colored bar on the left of each card */
+      .live-status > div::before, .live-status > article::before {
+        content: '';
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 3px !important;
+        background: var(--nrn-up) !important;
+        box-shadow: 0 0 24px var(--nrn-up-glow) !important;
+      }
+
+      /* Headlines inside cards */
+      .live-status h3, .live-status > div > div:first-child > strong {
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.005em !important;
+        color: var(--nrn-text) !important;
+      }
+
+      /* Numeric values */
+      .live-status p, .live-status span, .live-status div {
+        color: var(--nrn-text-muted) !important;
+        font-size: 0.9rem !important;
+      }
+      .live-status strong, .live-status b {
+        color: var(--nrn-text) !important;
+        font-weight: 600 !important;
+      }
+
+      /* Loaders (skeleton spinners while data fetches) */
+      svg circle, svg path { stroke: var(--nrn-text-muted) !important; opacity: 0.45; }
+
+      /* Footer with "open source" / "powered by Upptime" */
+      footer {
+        margin-top: 64px !important;
+        padding-top: 24px !important;
+        border-top: 1px solid var(--nrn-border) !important;
+        text-align: center !important;
+        font-size: 0.82rem !important;
+        color: var(--nrn-text-muted) !important;
+      }
+      footer a {
+        color: var(--nrn-text-muted) !important;
+        text-decoration: none !important;
+        border-bottom: 1px dotted var(--nrn-border-strong) !important;
+      }
+      footer a:hover { color: var(--nrn-accent) !important; border-color: var(--nrn-accent) !important; }
+
+      /* Smooth all transitions */
+      a, button, label { transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease !important; }
+
+      /* Selection */
+      ::selection { background: var(--nrn-accent); color: #001014; }
+    </style>
 
 assignees:
   - TautvydasBagocius
