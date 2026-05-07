@@ -1,0 +1,25 @@
+name: Response Time CI
+on:
+  schedule:
+    - cron: "0 */1 * * *"
+  repository_dispatch:
+    types:
+      - response_time
+      - response_time_*
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Check response time
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update response time
+        uses: upptime/uptime-monitor@v1
+        with:
+          command: "response-time"
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}

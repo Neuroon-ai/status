@@ -1,0 +1,30 @@
+name: Static Site CI
+on:
+  schedule:
+    - cron: "0 */8 * * *"
+  push:
+    paths:
+      - "history/summary.json"
+      - ".upptimerc.yml"
+  repository_dispatch:
+    types:
+      - static_site
+      - static_site_*
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Build, deploy, and release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate static site
+        uses: upptime/uptime-monitor@v1
+        with:
+          command: "site"
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}

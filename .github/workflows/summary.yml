@@ -1,0 +1,25 @@
+name: Summary CI
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  repository_dispatch:
+    types:
+      - summary
+      - summary_*
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Generate README
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate summary
+        uses: upptime/uptime-monitor@v1
+        with:
+          command: "readme"
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}

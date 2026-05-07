@@ -1,0 +1,30 @@
+name: Setup CI
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - ".upptimerc.yml"
+  repository_dispatch:
+    types:
+      - setup
+      - setup_*
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Setup Upptime
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Upptime
+        uses: upptime/uptime-monitor@v1
+        with:
+          command: "update-template"
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}

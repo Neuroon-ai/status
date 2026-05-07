@@ -1,0 +1,93 @@
+owner: Neuroon-ai
+repo: status
+
+sites:
+  - name: API HTTP (production)
+    url: https://api.neuroon.ai/actuator/health
+    expectedStatusCodes:
+      - 200
+    method: GET
+
+  - name: API HTTP (development)
+    url: https://dev-api.neuroon.ai/actuator/health
+    expectedStatusCodes:
+      - 200
+    method: GET
+
+  - name: Widget CDN
+    url: https://cdn.neuroon.ai/versions.json
+    expectedStatusCodes:
+      - 200
+    method: GET
+    headers:
+      - "Accept: application/json"
+
+  - name: Documentation
+    url: https://docs.neuroon.ai/
+    expectedStatusCodes:
+      - 200
+    method: GET
+
+  - name: Dashboard
+    url: https://neuroon.ai/dashboard
+    expectedStatusCodes:
+      - 200
+      - 302
+      - 308
+    method: GET
+
+status-website:
+  cname: status.neuroon.ai
+  name: Neuroon Status
+  introTitle: Estado de los servicios de Neuroon
+  introMessage: |
+    Página pública de uptime de la API HTTP, el widget CDN y la documentación.
+    Si experimentas un fallo y todos los componentes aquí aparecen sanos,
+    abre un ticket en `soporte@neuroon.ai` con el `request id` y el `timestamp`.
+  navbar:
+    - title: Status
+      href: /
+    - title: Docs
+      href: https://docs.neuroon.ai
+    - title: Reportar incidente
+      href: mailto:soporte@neuroon.ai
+  logoUrl: https://docs.neuroon.ai/img/brand/logo-mark.svg
+  faviconUrl: https://docs.neuroon.ai/img/brand/favicon.ico
+  theme: dark
+
+assignees:
+  - TautvydasBagocius
+
+skipDescriptionUpdate: true
+skipPoweredByReadme: false
+
+commitMessages:
+  readmeContent: ":pencil: Update summary in README"
+  summaryJson: ":card_index: Update summary.json"
+  statusChange: "$EMOJI $SITE_NAME is $STATUS"
+  graphsUpdate: ":bar_chart: Update graphs in README"
+  commitAuthorName: Upptime Bot
+  commitAuthorEmail: 73812536+upptime-bot@users.noreply.github.com
+
+i18n:
+  activeIncidents: Incidentes activos
+  allSystemsOperational: Todos los sistemas operativos
+  incidents: Incidentes
+  pastIncidents: Histórico de incidentes
+  incidentReport: "Reporte de incidente: $SITE_NAME"
+  incidentReportDescription: |
+    Una incidencia automática se ha abierto en el repo de status. El equipo
+    está revisando. Suscríbete vía RSS o GitHub Watch para recibir updates.
+  upDay: día operativo
+  upDays: días operativos
+  upHours: horas operativas
+  upMinutes: minutos operativos
+  upMonth: mes operativo
+  upMonths: meses operativos
+  upTitleFormat: "$SITE_NAME ha estado operativo durante $DURATION."
+  isUp: operativo
+  isDown: caído
+  isDegraded: degradado
+  hasIncidents: tiene incidentes
+  ariaLabelStatus: Estado actual
+  ariaLabelDailyStatus: Estado del día
