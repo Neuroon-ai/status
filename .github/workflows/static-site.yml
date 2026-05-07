@@ -22,9 +22,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build static site
+  release:
+    name: Build & deploy static site
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Generate static site
@@ -33,19 +36,29 @@ jobs:
           command: "site"
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+      - name: Locate built export
+        id: locate
+        run: |
+          echo '--- listing repo root ---'
+          ls -la
+          echo '--- looking for __sapper__/export ---'
+          find . -name 'index.html' -path '*__sapper__/export*' 2>/dev/null | head -5 || true
+          # Try common Upptime output paths in order
+          for candidate in \
+            "site/status-page/__sapper__/export" \
+            "status-page/__sapper__/export" \
+            "node_modules/@upptime/status-page/__sapper__/export" \
+            "__sapper__/export"; do
+            if [ -d "$candidate" ]; then
+              echo "✅ Found export at: $candidate"
+              echo "path=$candidate" >> "$GITHUB_OUTPUT"
+              break
+            fi
+          done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: __sapper__/export
-
-  deploy:
-    name: Deploy to GitHub Pages
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
+          path: ${{ steps.locate.outputs.path }}
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
