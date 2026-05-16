@@ -23,17 +23,19 @@
     "icon": "https://icons.duckduckgo.com/ip3/dev-api.neuroon.ai.ico",
     "slug": "api-http-development",
     "status": "down",
-    "uptime": "100.00%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
-    "uptimeMonth": "100.00%",
-    "uptimeYear": "100.00%",
+    "uptime": "99.76%",
+    "uptimeDay": "97.74%",
+    "uptimeWeek": "99.68%",
+    "uptimeMonth": "99.76%",
+    "uptimeYear": "99.76%",
     "time": 0,
     "timeDay": 0,
     "timeWeek": 0,
     "timeMonth": 0,
     "timeYear": 0,
-    "dailyMinutesDown": {}
+    "dailyMinutesDown": {
+      "2026-05-16": 33
+    }
   },
   {
     "name": "Widget CDN",
