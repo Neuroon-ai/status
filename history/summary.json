@@ -25,11 +25,11 @@
     "icon": "https://icons.duckduckgo.com/ip3/dev-api.neuroon.ai.ico",
     "slug": "api-http-development",
     "status": "down",
-    "uptime": "95.94%",
-    "uptimeDay": "65.65%",
-    "uptimeWeek": "90.06%",
-    "uptimeMonth": "95.94%",
-    "uptimeYear": "95.94%",
+    "uptime": "94.97%",
+    "uptimeDay": "65.66%",
+    "uptimeWeek": "87.50%",
+    "uptimeMonth": "94.97%",
+    "uptimeYear": "94.97%",
     "time": 0,
     "timeDay": 0,
     "timeWeek": 0,
@@ -38,7 +38,8 @@
     "dailyMinutesDown": {
       "2026-05-16": 33,
       "2026-05-24": 861,
-      "2026-05-23": 141
+      "2026-05-23": 141,
+      "2026-05-25": 258
     }
   },
   {
