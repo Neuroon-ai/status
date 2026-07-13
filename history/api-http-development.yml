@@ -1,7 +1,7 @@
 url: https://dev-api.neuroon.ai/actuator/health
 status: down
 code: 503
-responseTime: 1078
-lastUpdated: 2026-07-13T20:19:35.637Z
+responseTime: 349
+lastUpdated: 2026-07-13T22:01:43.939Z
 startTime: 2026-05-07T13:41:21.418Z
 generator: Upptime <https://github.com/upptime/upptime>
