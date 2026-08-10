@@ -25,11 +25,11 @@
     "icon": "https://icons.duckduckgo.com/ip3/dev-api.neuroon.ai.ico",
     "slug": "api-http-development",
     "status": "up",
-    "uptime": "74.39%",
+    "uptime": "74.54%",
     "uptimeDay": "100.00%",
     "uptimeWeek": "100.00%",
-    "uptimeMonth": "86.20%",
-    "uptimeYear": "74.39%",
+    "uptimeMonth": "87.98%",
+    "uptimeYear": "74.54%",
     "time": 0,
     "timeDay": 0,
     "timeWeek": 0,
@@ -72,9 +72,9 @@
     "url": "https://cdn.neuroon.ai/versions.json",
     "icon": "https://icons.duckduckgo.com/ip3/cdn.neuroon.ai.ico",
     "slug": "widget-cdn",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.98%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
@@ -83,7 +83,9 @@
     "timeWeek": 0,
     "timeMonth": 0,
     "timeYear": 0,
-    "dailyMinutesDown": {}
+    "dailyMinutesDown": {
+      "2026-08-10": 0
+    }
   },
   {
     "name": "Documentation",
