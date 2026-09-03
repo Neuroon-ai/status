@@ -24,12 +24,12 @@
     "url": "https://dev-api.neuroon.ai/actuator/health",
     "icon": "https://icons.duckduckgo.com/ip3/dev-api.neuroon.ai.ico",
     "slug": "api-http-development",
-    "status": "up",
-    "uptime": "79.59%",
-    "uptimeDay": "100.00%",
+    "status": "down",
+    "uptime": "79.64%",
+    "uptimeDay": "99.98%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
-    "uptimeYear": "79.59%",
+    "uptimeYear": "79.64%",
     "time": 0,
     "timeDay": 0,
     "timeWeek": 0,
@@ -64,7 +64,8 @@
       "2026-06-23": 1440,
       "2026-06-22": 1440,
       "2026-06-21": 1440,
-      "2026-06-20": 73
+      "2026-06-20": 73,
+      "2026-09-03": 0
     }
   },
   {
