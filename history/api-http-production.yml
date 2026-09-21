@@ -1,7 +1,7 @@
 url: https://api.neuroon.ai/actuator/health
 status: up
 code: 200
-responseTime: 890
-lastUpdated: 2026-09-21T06:05:18.167Z
+responseTime: 748
+lastUpdated: 2026-09-21T13:51:51.243Z
 startTime: 2026-05-07T13:41:20.645Z
 generator: Upptime <https://github.com/upptime/upptime>
